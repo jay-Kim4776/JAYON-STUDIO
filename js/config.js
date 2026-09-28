@@ -5,9 +5,10 @@ window.JCORE_CONFIG = Object.freeze({
   timeoutMs: 6000,
   fallback: {
     tag: 'v1.0.26', version: '1.0.26',
-    assets: { runtime: 'JCore-Setup.exe', manual: 'JCore_User_Manual_1.0.26.pdf', client: 'JCoreClient.zip', brochure: 'JAYON.pptx' }
+    assets: { runtime: 'JCore-Setup.exe', manual: 'JCore_User_Manual_1.0.26.pdf', client: 'JCoreClient.zip', brochure: 'JAYON.pptx', simulator: 'PLCSimulator_Setup.exe' }
   },
   assets: {
+    simulator: { names: ['PLCSimulator_Setup.exe', 'PLCSimualator_Setup.exe'] },
     runtime: { names: ['JCore-Setup.exe', 'JCore.msi'], pattern: /^JCore-\d+\.\d+\.\d+-x64\.msi$/i },
     client: { names: ['JCoreClient.zip'], pattern: /^JCoreClient-\d+\.\d+\.\d+\.zip$/i },
     brochure: { names: ['JCore-Product-Brochure.pdf', 'JAYON.pptx'] },

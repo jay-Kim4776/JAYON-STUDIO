@@ -20,3 +20,13 @@
 
 /* Project-scoped C# scripting, using the existing product palette. */
 .hero-meta{flex-wrap:wrap;row-gap:8px}.script-engine{display:flex;justify-content:space-between;gap:12px;margin-top:16px;border-top:1px solid #35554d;padding-top:12px;font-size:9px;color:#a5d2c5}.script-engine>span:first-child{letter-spacing:1.3px;color:#d1eee4}.scripting-note{display:grid;grid-template-columns:1.2fr 1fr;gap:40px;align-items:center;padding:32px;margin-top:30px;background:#fff;border:1px solid var(--line);border-left:3px solid var(--green)}.scripting-note .eyebrow{margin-bottom:10px}.scripting-note h3{font-size:21px;margin:0 0 12px;letter-spacing:-.6px}.scripting-note p:not(.eyebrow){color:var(--muted);font-size:13px;margin:0 0 12px}.scripting-note small{font-size:11px;color:var(--muted)}.scripting-note ol{display:flex;list-style:none;gap:18px;margin:0;padding:0}.scripting-note li{flex:1;border-top:2px solid #cfe1db;padding-top:12px}.scripting-note li>span{font-size:10px;color:var(--green)}.scripting-note strong{display:block;font-size:16px;margin:8px 0 4px}.scripting-note li small{display:block}@media(max-width:768px){.scripting-note{grid-template-columns:1fr;gap:22px;padding:24px}.script-engine{flex-wrap:wrap}.scripting-note h3{font-size:19px}}
+
+/* Shared multi-page navigation and downloads. */
+.header nav a[aria-current=page]{color:var(--green);box-shadow:inset 0 -2px var(--green)}
+.section h1{font-size:36px;line-height:1.35;letter-spacing:-1.5px;margin:0}
+.protocol-list{display:flex;flex-wrap:wrap;gap:8px;list-style:none;padding:0;margin:18px 0}
+.protocol-list li{padding:5px 10px;background:#edf4f1;border:1px solid #d4e4dc;font-size:12px;border-radius:4px}
+.simulator-card{grid-column:span 2}.download-grid{align-items:stretch}.download-card{display:flex;flex-direction:column}.download-card .download-action{margin-top:auto}
+.release-panel{border:1px solid var(--line);padding:32px;background:#f7faf9}.release-panel pre{white-space:pre-wrap;overflow-wrap:anywhere;font:inherit;color:var(--muted);margin:24px 0}.release-panel .actions{flex-wrap:wrap}
+@media(max-width:1100px) and (min-width:701px){.header .product-brand small{display:none}.header .nav-download{display:none}.header nav{gap:15px}}
+@media(max-width:700px){.simulator-card{grid-column:auto}.section h1{font-size:28px}.release-panel{padding:22px}}

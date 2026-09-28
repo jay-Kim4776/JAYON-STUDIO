@@ -3,7 +3,7 @@
   const c = window.JCORE_CONFIG;
   const base = `https://github.com/${encodeURIComponent(c.githubOwner)}/${encodeURIComponent(c.releaseRepository)}`;
   const status = document.querySelector('#release-status');
-  const labels = { runtime: '설치 파일 다운로드 ↓', client: 'SDK 다운로드 ↓', brochure: '제품소개서 다운로드 ↓', manual: '매뉴얼 다운로드 ↓' };
+  const labels = { simulator: '시뮬레이터 다운로드 ↓', runtime: '설치 파일 다운로드 ↓', client: 'SDK 다운로드 ↓', brochure: '제품소개서 다운로드 ↓', manual: '매뉴얼 다운로드 ↓' };
   const setText = (selector, text) => document.querySelectorAll(selector).forEach(el => { el.textContent = text; });
   function apply(key, url, version, date) {
     if (key === 'runtime' && url) setText('[data-format=runtime]', url.toLowerCase().endsWith('.exe') ? 'EXE' : 'MSI');
@@ -46,11 +46,16 @@
         const url = asset && asset.state === 'uploaded' ? `${base}/releases/download/${encodeURIComponent(release.tag_name)}/${encodeURIComponent(asset.name)}` : null;
         apply(key, url, version, dateText);
       }
-      status.textContent = `최신 안정 버전 ${version} · GitHub Releases`;
+      const title = document.querySelector('#release-title'), body = document.querySelector('#release-body');
+      if (title) title.textContent = `JCore ${version}`;
+      if (body && typeof release.body === 'string' && release.body.trim()) { body.textContent = release.body; body.hidden = false; document.querySelector('#release-summary').hidden = true; }
+      if (status) status.textContent = `최신 안정 버전 ${version} · GitHub Releases`;
     } catch (_) {
       fallback();
-      status.textContent = `최신 버전을 확인하지 못했습니다. 확인된 ${c.fallback.version} 다운로드를 제공합니다. 최신 배포 여부는 Release Notes에서 확인하세요.`;
+      if (status) status.textContent = `최신 버전을 확인하지 못했습니다. 확인된 ${c.fallback.version} 다운로드를 제공합니다. 최신 배포 여부는 Release Notes에서 확인하세요.`;
     } finally { clearTimeout(timer); }
   }
-  load();
+  if (document.querySelector('[data-download], #release-status')) load();
+  const legacy = {product:'product.html',features:'product.html#features',downloads:'downloads.html',documentation:'docs.html'};
+  if (document.querySelector('[data-page=home][aria-current]') && legacy[location.hash.slice(1)]) location.replace(legacy[location.hash.slice(1)]);
 })();

@@ -56,3 +56,14 @@ notepad "%TEMP%\JCore-install.log"
 
 
 스크립트 실행에는 SDK 라이선스가 필요합니다. UpdatesUntil 기준일은 2026-09-24 UTC입니다.
+
+## 페이지 구성
+
+- `index.html`: 홈
+- `product.html`: 제품 소개·드라이버·스크립트·운영 환경
+- `downloads.html`: 설치파일·클라이언트·소개서·매뉴얼·PLC 시뮬레이터
+- `docs.html`: 문서와 설치 가이드
+- `releases.html`: 최신 릴리즈 내용과 전체 이력 링크
+
+공통 디자인은 css/style.css, 다운로드 파일 매핑은 js/config.js에서 관리합니다.
+PLC 시뮬레이터는 실제 릴리즈 자산 `PLCSimulator_Setup.exe`를 연결하며 Melsec Q, XGT, Modbus, ControlLogix의 PLC 통신을 대체하는 테스트 도구입니다. 최신 릴리즈에 해당 자산이 없으면 다운로드 버튼을 비활성화합니다. API 오류 시 확인된 v1.0.26 링크를 제공합니다.
