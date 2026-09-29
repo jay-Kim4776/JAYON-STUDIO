@@ -1,11 +1,11 @@
-/* Public release metadata only. Never put credentials or private repository URLs here. */
+﻿/* Public release metadata only. Never put credentials or private repository URLs here. */
 window.JCORE_CONFIG = Object.freeze({
   githubOwner: 'jay-Kim4776',
   releaseRepository: 'JCore-Releases',
   timeoutMs: 6000,
   fallback: {
-    tag: 'v1.0.26', version: '1.0.26',
-    assets: { runtime: 'JCore-Setup.exe', manual: 'JCore_User_Manual_1.0.26.pdf', client: 'JCoreClient.zip', brochure: 'JAYON.pptx', simulator: 'PLCSimulator_Setup.exe' }
+    tag: 'v1.0.27', version: '1.0.27',
+    assets: { runtime: 'JCore-Setup.exe', manual: 'JCore_User_Manual_1.0.27.pdf', client: 'JCoreClient.zip', brochure: 'JAYON.pptx', simulator: 'PLCSimulator_Setup.exe' }
   },
   assets: {
     simulator: { names: ['PLCSimulator_Setup.exe', 'PLCSimualator_Setup.exe'] },
