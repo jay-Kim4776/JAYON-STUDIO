@@ -52,18 +52,21 @@ notepad "%TEMP%\JCore-install.log"
 
 사용자 매뉴얼: [JCore 사용자 매뉴얼 PDF (한국어, 26쪽)](https://github.com/jay-Kim4776/JCore-Releases/releases/download/v1.0.27/JCore_User_Manual_1.0.27.pdf) — 설치, 계정·인증, 드라이버·태그, OPC/SDK 연결, 라이선스 및 문제 해결 안내.
 
-제품소개서: [JCore 제품소개서 pptx (한국어, 10쪽)](https://github.com/jay-Kim4776/JCore-Releases/releases/download/v1.0.27/JAYON.pptx) — JCore(OPC Server, SDK) 소개.
+제품소개서: [JCore 제품소개서 pptx (한국어, 10쪽)](https://github.com/jay-Kim4776/JCore-Releases/releases/download/v1.0.27/JCore.pptx) — JCore(OPC Server, SDK) 소개.
 
 
 스크립트 실행에는 SDK 라이선스가 필요합니다. UpdatesUntil 기준일은 2026-09-29 UTC입니다.
 
 ## 페이지 구성
 
-- `index.html`: 홈
-- `product.html`: 제품 소개·드라이버·스크립트·운영 환경
+- `index.html`: JAYON STUDIO 회사 소개와 비전
+- `product.html`: JCore 제품 소개·드라이버·스크립트·운영 환경
 - `downloads.html`: 설치파일·클라이언트·소개서·매뉴얼·PLC 시뮬레이터
 - `docs.html`: 문서와 설치 가이드
-- `releases.html`: 최신 릴리즈 내용과 전체 이력 링크
+- `simulator.html`: PLC Simulator 제품 소개 및 실행 화면
+- `releases.html`: 기존 링크 호환을 위한 다운로드 안내
 
 공통 디자인은 css/style.css, 다운로드 파일 매핑은 js/config.js에서 관리합니다.
 PLC 시뮬레이터는 실제 릴리즈 자산 `PLCSimulator_Setup.exe`를 연결하며 Melsec Q, XGT, Modbus, ControlLogix의 PLC 통신을 대체하는 테스트 도구입니다. 최신 릴리즈에 해당 자산이 없으면 다운로드 버튼을 비활성화합니다. API 오류 시 확인된 v1.0.27 링크를 제공합니다.
+
+PLC Simulator 제품소개서: [PLC_Simulator.pptx](https://github.com/jay-Kim4776/JCore-Releases/releases/download/v1.0.27/PLC_Simulator.pptx). 소개서의 개발 브랜치 기능은 웹에서도 구분합니다.

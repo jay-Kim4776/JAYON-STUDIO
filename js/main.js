@@ -3,7 +3,7 @@
   const c = window.JCORE_CONFIG;
   const base = `https://github.com/${encodeURIComponent(c.githubOwner)}/${encodeURIComponent(c.releaseRepository)}`;
   const status = document.querySelector('#release-status');
-  const labels = { simulator: '시뮬레이터 다운로드 ↓', runtime: '설치 파일 다운로드 ↓', client: 'SDK 다운로드 ↓', brochure: '제품소개서 다운로드 ↓', manual: '매뉴얼 다운로드 ↓' };
+  const labels = { simulatorBrochure: '제품소개서 다운로드 ↓', simulator: '시뮬레이터 다운로드 ↓', runtime: '설치 파일 다운로드 ↓', client: 'SDK 다운로드 ↓', brochure: '제품소개서 다운로드 ↓', manual: '매뉴얼 다운로드 ↓' };
   const setText = (selector, text) => document.querySelectorAll(selector).forEach(el => { el.textContent = text; });
   function apply(key, url, version, date) {
     if (key === 'runtime' && url) setText('[data-format=runtime]', url.toLowerCase().endsWith('.exe') ? 'EXE' : 'MSI');
@@ -26,7 +26,7 @@
   };
   fallback();
   const toggle = document.querySelector('.menu-toggle'), nav = document.querySelector('#navigation');
-  const close = () => { toggle.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); };
+  const close = () => { toggle.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); document.querySelectorAll('.product-menu[open]').forEach(el => el.open = false); };
   toggle.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open); });
   nav.querySelectorAll('a').forEach(el => el.addEventListener('click', close));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); } });
@@ -52,7 +52,7 @@
       if (status) status.textContent = `최신 안정 버전 ${version} · GitHub Releases`;
     } catch (_) {
       fallback();
-      if (status) status.textContent = `최신 버전을 확인하지 못했습니다. 확인된 ${c.fallback.version} 다운로드를 제공합니다. 최신 배포 여부는 Release Notes에서 확인하세요.`;
+      if (status) status.textContent = `최신 버전을 확인하지 못했습니다. 확인된 ${c.fallback.version} 다운로드를 제공합니다. 최신 배포 여부는 GitHub 배포 페이지에서 확인하세요.`;
     } finally { clearTimeout(timer); }
   }
   if (document.querySelector('[data-download], #release-status')) load();
