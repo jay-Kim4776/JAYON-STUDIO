@@ -4,7 +4,7 @@ window.JCORE_CONFIG = Object.freeze({
   releaseRepository: 'JCore-Releases',
   timeoutMs: 6000,
   fallback: {
-    tag: 'v1.0.28', version: '1.0.28',
+    tag: 'v1.0.29', version: '1.0.29',
     assets: { runtime: 'JCore-Setup.exe', manual: 'JCore_User_Manual_1.0.27.pdf', client: 'JCoreClient.zip', brochure: 'JCore.pptx', simulatorBrochure: 'PLC_Simulator.pptx', simulator: 'PLCSimulator_Setup.exe' }
   },
   assets: {
