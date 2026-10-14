@@ -8,7 +8,7 @@ JAYONSTUDIO 공개 제품 소개·문서·설치 파일 배포 저장소입니�
 
 설치 파일은 JSolution_Setup.exe와 PLCSimulator_Setup.exe 두 종류입니다. JSolution에는 필수 진단기와 선택 설치 제품 JCore·JView·PLC Simulator, .NET Framework 4.8 오프라인 설치 파일이 포함됩니다. 진단기만 설치할 수도 있습니다.
 
-현재 확인된 배포: JSolution 1.0.5 / JCore 1.0.33 / JView 1.0.6 / PLC Simulator 1.0.67. 패키지 정적·정책·로그 검사 60개 통과. 실제 환경의 서비스 시작은 설치 후 확인해야 합니다.
+현재 확인된 배포: JSolution 1.0.11 / JCore 1.0.36 / JView 1.0.9 / PLC Simulator 1.0.71. 패키지 정적·정책·로그 검사 74개 통과. 실제 환경의 서비스 시작은 설치 후 확인해야 합니다.
 
 문서는 제공된 회사소개서와 제품소개서 원본 4종 및 최신 제공 JCore 매뉴얼 1.0.27입니다. 구버전 매뉴얼 1.0.24는 홈페이지에 중복 게시하지 않습니다. 문서와 설치본의 기능 범위는 다를 수 있습니다.
 
