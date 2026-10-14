@@ -2,9 +2,9 @@
 
 JAYONSTUDIO 공개 제품 소개·문서·설치 파일 배포 저장소입니다. 제품 소스 코드는 포함하지 않습니다.
 
-- 홈페이지: https://jay-kim4776.github.io/JSolution-Releases/
-- 다운로드: https://jay-kim4776.github.io/JSolution-Releases/downloads.html
-- 문서: https://jay-kim4776.github.io/JSolution-Releases/docs.html
+- 홈페이지: https://jay-kim4776.github.io/JAYON-STUDIO/
+- 다운로드: https://jay-kim4776.github.io/JAYON-STUDIO/downloads.html
+- 문서: https://jay-kim4776.github.io/JAYON-STUDIO/docs.html
 
 설치 파일은 JSolution_Setup.exe와 PLCSimulator_Setup.exe 두 종류입니다. JSolution에는 필수 진단기와 선택 설치 제품 JCore·JView·PLC Simulator, .NET Framework 4.8 오프라인 설치 파일이 포함됩니다. 진단기만 설치할 수도 있습니다.
 
