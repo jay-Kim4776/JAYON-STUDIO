@@ -1,61 +1,32 @@
 (() => {
-  'use strict';
-  const c = window.JCORE_CONFIG;
-  const base = `https://github.com/${encodeURIComponent(c.githubOwner)}/${encodeURIComponent(c.releaseRepository)}`;
-  const status = document.querySelector('#release-status');
-  const labels = { simulatorBrochure: '제품소개서 다운로드 ↓', simulator: '시뮬레이터 다운로드 ↓', runtime: '설치 파일 다운로드 ↓', client: 'SDK 다운로드 ↓', brochure: '제품소개서 다운로드 ↓', manual: '매뉴얼 다운로드 ↓' };
-  const setText = (selector, text) => document.querySelectorAll(selector).forEach(el => { el.textContent = text; });
-  function apply(key, url, version, date) {
-    if (key === 'runtime' && url) setText('[data-format=runtime]', url.toLowerCase().endsWith('.exe') ? 'EXE' : 'MSI');
-    if (key === 'brochure' && url) setText('[data-format=brochure]', url.toLowerCase().endsWith('.pptx') ? 'PPTX' : 'PDF');
-    document.querySelectorAll(`[data-download="${key}"]`).forEach(el => {
-      if (url) { el.href = url; el.removeAttribute('aria-disabled'); el.removeAttribute('tabindex'); }
-      else { el.removeAttribute('href'); el.setAttribute('aria-disabled', 'true'); el.setAttribute('tabindex', '-1'); }
-      if (el.classList.contains('download-action')) el.textContent = url ? labels[key] : '배포 준비 중';
-      if (key === 'brochure' && el.classList.contains('doc-row')) el.querySelector('small').textContent = url ? '제품 개요 및 주요 기능 안내' : '제품소개서 · 배포 준비 중';
-    });
-    setText(`[data-version="${key}"]`, url ? `Version ${version}` : '배포 준비 중');
-    setText(`[data-date="${key}"]`, url ? date : '별도 배포 파일 준비 중');
+ 'use strict';
+ const c=window.JSOLUTION_CONFIG;
+ const base=`https://github.com/${c.owner}/${c.repository}`;
+ const status=document.querySelector('#release-status');
+ const labels={solution:'통합 설치 파일 다운로드 ↓',simulator:'시뮬레이터 다운로드 ↓'};
+ function apply(tag,assets=null,date='확인된 배포본'){
+  for(const [key,file] of Object.entries(c.files)){
+   const available=!assets||assets.some(a=>a.name===file&&a.state==='uploaded');
+   const url=`${base}/releases/download/${encodeURIComponent(tag)}/${encodeURIComponent(file)}`;
+   document.querySelectorAll(`[data-download="${key}"]`).forEach(el=>{if(available){el.href=url;el.removeAttribute('aria-disabled');}else{el.removeAttribute('href');el.setAttribute('aria-disabled','true');}if(el.classList.contains('download-action'))el.textContent=available?labels[key]:'배포 준비 중';});
+   document.querySelectorAll(`[data-version="${key}"]`).forEach(el=>el.textContent=`Version ${c.versions[key]}`);
+   document.querySelectorAll(`[data-date="${key}"]`).forEach(el=>el.textContent=date);
+   document.querySelectorAll(`[data-checksum="${key}"]`).forEach(el=>el.href=url+'.sha256');
   }
-  document.querySelectorAll('[data-release-link]').forEach(el => { el.href = base + '/releases' + (el.dataset.releaseLink === 'latest' ? '/latest' : ''); });
-  const fallback = () => {
-    for (const key of Object.keys(c.assets)) {
-      const filename = c.fallback.assets[key];
-      apply(key, filename ? `${base}/releases/download/${encodeURIComponent(c.fallback.tag)}/${encodeURIComponent(filename)}` : null, c.fallback.version, '확인된 배포 버전');
-    }
-  };
-  fallback();
-  const toggle = document.querySelector('.menu-toggle'), nav = document.querySelector('#navigation');
-  const close = () => { toggle.setAttribute('aria-expanded', 'false'); nav.classList.remove('open'); document.querySelectorAll('.product-menu[open]').forEach(el => el.open = false); };
-  toggle.addEventListener('click', () => { const open = toggle.getAttribute('aria-expanded') !== 'true'; toggle.setAttribute('aria-expanded', String(open)); nav.classList.toggle('open', open); });
-  nav.querySelectorAll('a').forEach(el => el.addEventListener('click', close));
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') { close(); } });
-  async function load() {
-    const abort = new AbortController(), timer = setTimeout(() => abort.abort(), c.timeoutMs);
-    try {
-      const response = await fetch(`https://api.github.com/repos/${encodeURIComponent(c.githubOwner)}/${encodeURIComponent(c.releaseRepository)}/releases/latest`, { signal: abort.signal, headers: { Accept: 'application/vnd.github+json' } });
-      if (!response.ok) throw new Error('Release unavailable');
-      const release = await response.json();
-      if (release.draft || release.prerelease || !Array.isArray(release.assets) || typeof release.tag_name !== 'string') throw new Error('Invalid stable release');
-      const version = release.tag_name.replace(/^v/, '');
-      const date = new Date(release.published_at);
-      const dateText = Number.isNaN(date.getTime()) ? '최신 안정 버전' : `Released ${date.toLocaleDateString('ko-KR', {year:'numeric',month:'2-digit',day:'2-digit'})}`;
-      for (const [key, spec] of Object.entries(c.assets)) {
-        const asset = spec.names.map(name => release.assets.find(a => a.name === name)).find(Boolean) || release.assets.find(a => spec.pattern && spec.pattern.test(a.name));
-        // Construct URLs from the configured public repo; never follow arbitrary URLs in API data.
-        const url = asset && asset.state === 'uploaded' ? `${base}/releases/download/${encodeURIComponent(release.tag_name)}/${encodeURIComponent(asset.name)}` : null;
-        apply(key, url, version, dateText);
-      }
-      const title = document.querySelector('#release-title'), body = document.querySelector('#release-body');
-      if (title) title.textContent = `JCore ${version}`;
-      if (body && typeof release.body === 'string' && release.body.trim()) { body.textContent = release.body; body.hidden = false; document.querySelector('#release-summary').hidden = true; }
-      if (status) status.textContent = `최신 안정 버전 ${version} · GitHub Releases`;
-    } catch (_) {
-      fallback();
-      if (status) status.textContent = `최신 버전을 확인하지 못했습니다. 확인된 ${c.fallback.version} 다운로드를 제공합니다. 최신 배포 여부는 GitHub 배포 페이지에서 확인하세요.`;
-    } finally { clearTimeout(timer); }
-  }
-  if (document.querySelector('[data-download], #release-status')) load();
-  const legacy = {product:'product.html',features:'product.html#features',downloads:'downloads.html',documentation:'docs.html'};
-  if (document.querySelector('[data-page=home][aria-current]') && legacy[location.hash.slice(1)]) location.replace(legacy[location.hash.slice(1)]);
+ }
+ apply(c.tag);
+ document.querySelectorAll('[data-release-link]').forEach(el=>el.href=base+'/releases'+(el.dataset.releaseLink==='latest'?'/latest':''));
+ const toggle=document.querySelector('.menu-toggle'),nav=document.querySelector('#navigation');
+ const close=()=>{toggle.setAttribute('aria-expanded','false');nav.classList.remove('open');document.querySelectorAll('.product-menu[open]').forEach(el=>el.open=false);};
+ toggle.addEventListener('click',()=>{const open=toggle.getAttribute('aria-expanded')!=='true';toggle.setAttribute('aria-expanded',String(open));nav.classList.toggle('open',open);});
+ nav.querySelectorAll('a').forEach(el=>el.addEventListener('click',close));document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
+ const current=location.pathname.split('/').pop()||'index.html';nav.querySelectorAll('a').forEach(el=>{if(el.getAttribute('href')===current)el.setAttribute('aria-current','page');});
+ async function load(){const abort=new AbortController(),timer=setTimeout(()=>abort.abort(),c.timeoutMs);try{
+  const response=await fetch(`https://api.github.com/repos/${c.owner}/${c.repository}/releases/tags/${encodeURIComponent(c.tag)}`,{signal:abort.signal,headers:{Accept:'application/vnd.github+json'}});
+  if(!response.ok)throw new Error('release unavailable');const release=await response.json();if(release.draft||!Array.isArray(release.assets))throw new Error('invalid release');
+  apply(release.tag_name,release.assets,new Date(release.published_at).toLocaleDateString('ko-KR',{timeZone:'Asia/Seoul'}));
+  if(status)status.textContent=`JSolution ${c.versions.solution} · PLC Simulator ${c.versions.simulator} · GitHub Releases`;
+  const title=document.querySelector('#release-title'),body=document.querySelector('#release-body');if(title)title.textContent=release.name;if(body)body.textContent=release.body||'';
+ }catch{if(status)status.textContent='실시간 조회가 지연되어 확인된 배포 파일 링크를 제공합니다. GitHub 릴리스 안내에서 상태를 확인하세요.';}finally{clearTimeout(timer);}}
+ if(document.querySelector('[data-download],#release-status'))load();
 })();
