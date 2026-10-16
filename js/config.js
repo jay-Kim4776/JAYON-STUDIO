@@ -1,2 +1,2 @@
 /* Public metadata only. Installers are published as separate EXE assets. */
-window.JSOLUTION_CONFIG=Object.freeze({owner:'jay-Kim4776',repository:'JAYON-STUDIO',tag:'jsolution-v1.0.13',versions:{solution:'1.0.13',simulator:'1.0.71'},files:{solution:'JSolution_Setup.exe',simulator:'PLCSimulator_Setup.exe'},timeoutMs:6000});
+window.JSOLUTION_CONFIG=Object.freeze({owner:'jay-Kim4776',repository:'JAYON-STUDIO',tag:'jsolution-v1.0.15',versions:{solution:'1.0.15',simulator:'1.0.71'},files:{solution:'JSolution_Setup.exe',simulator:'PLCSimulator_Setup.exe'},timeoutMs:6000});
