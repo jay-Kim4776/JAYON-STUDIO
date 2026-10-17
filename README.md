@@ -6,7 +6,7 @@ JAYONSTUDIO 공개 제품 소개·문서·설치 파일 배포 저장소입니�
 - 다운로드: https://jay-kim4776.github.io/JAYON-STUDIO/downloads.html
 - 문서: https://jay-kim4776.github.io/JAYON-STUDIO/docs.html
 
-설치 파일은 JSolution_Setup.exe와 PLCSimulator_Setup.exe 두 종류입니다. JSolution에는 필수 진단기와 선택 설치 제품 JCore·JView·PLC Simulator, .NET Framework 4.8 오프라인 설치 파일이 포함됩니다. 진단기만 설치할 수도 있습니다.
+Windows 설치 파일은 JSolution_Setup.exe와 PLCSimulator_Setup.exe이며, Android 모바일용 FieldScope APK를 별도로 제공합니다. JSolution에는 필수 진단기와 선택 설치 제품 JCore·JView·PLC Simulator, .NET Framework 4.8 오프라인 설치 파일이 포함됩니다. 진단기만 설치할 수도 있습니다.
 
 현재 확인된 배포: JSolution 1.0.15 / JCore 1.1.0 / JView 1.1.3 / PLC Simulator 1.0.71. 설치 패키지·정책·로그·화면 검사 117개 통과. 실제 환경의 서비스 시작은 설치 후 확인해야 합니다.
 
@@ -26,3 +26,7 @@ GitHub가 자동 생성하는 Source code ZIP/TAR는 이 홈페이지 저장소�
 assets/automation-factory.png: AI로 제작한 산업자동화 개념 이미지입니다. 실제 고객 현장으로 표시하지 않습니다.
 assets/jview-designer.png: 제공된 JView 제품소개서에 포함된 개발 예시 화면입니다.
 기존 PLC Simulator 화면은 제품 기능 소개를 위해 유지합니다.
+
+## FieldScope 모바일
+
+FieldScope 1.5.2 Android APK는 독립 릴리스 fieldscope-v1.5.2로 제공합니다. 소개서 PPTX와 사용자 매뉴얼 PDF는 제공 원본 1.5.1입니다. 소개 화면은 제품소개서에 포함된 실제 앱 화면을 사용합니다. 기기별 라이선스·요청 파일은 공개하지 않습니다.
