@@ -1,2 +1,2 @@
 /* Public metadata only. Installers are published as separate EXE assets. */
-window.JSOLUTION_CONFIG=Object.freeze({owner:'jay-Kim4776',repository:'JAYON-STUDIO',tag:'jsolution-v1.1.0',tags:{fieldscope:'fieldscope-v1.5.7'},versions:{solution:'1.1.0',simulator:'1.0.71',fieldscope:'1.5.7'},files:{solution:'JSolution_Setup.exe',simulator:'PLCSimulator_Setup.exe',fieldscope:'FieldScope-1.5.7.apk'},timeoutMs:6000});
+window.JSOLUTION_CONFIG=Object.freeze({owner:'jay-Kim4776',repository:'JAYON-STUDIO',tag:'jsolution-v1.1.1',tags:{fieldscope:'fieldscope-v1.5.7'},versions:{solution:'1.1.1',simulator:'1.0.72',fieldscope:'1.5.7'},files:{solution:'JSolution_Setup.exe',simulator:'PLCSimulator_Setup.exe',fieldscope:'FieldScope-1.5.7.apk'},timeoutMs:6000});
